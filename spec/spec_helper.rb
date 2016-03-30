@@ -2,6 +2,8 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'safe_column'
 
 require 'my_amazing_model'
+require 'normal_model'
+
 require 'minitest/autorun'
 require 'database_cleaner'
 require 'pry'
@@ -15,6 +17,10 @@ ActiveRecord::Schema.define do
   create_table :my_amazing_models do |table|
     table.column :title, :string
     table.column :body, :text
+  end
+
+  create_table :normal_models do |table|
+    table.column :field, :string
   end
 end
 
