@@ -18,12 +18,12 @@ ActiveRecord::Schema.define do
   end
 end
 
-class Minitest::Test
-  def setup
+class Minitest::Spec
+  before do
     DatabaseCleaner.start
   end
 
-  def teardown
+  after do
     DatabaseCleaner.clean
   end
 end

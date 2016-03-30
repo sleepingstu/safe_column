@@ -14,16 +14,10 @@ module SafeColumn
   end
 
   attr_writer :safe_columns
-   # def safe_columns=(safe_columns)
-   #      # binding.pry
-   #      @safe_columns = safe_columns
-   #    end
 
-      def safe_columns
-        # binding.pry
-        @safe_columns || []
-        # %i(title body)
-      end
+  def safe_columns
+    @safe_columns || []
+  end
 end
 
 module ActiveRecord
