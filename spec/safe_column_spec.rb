@@ -6,6 +6,14 @@ class SafeColumnSpec < Minitest::Spec
         :body => "<p>This is a body</p>") }
 
     describe "without safe_columns" do
+      before do
+        MyAmazingModel.allow_safe_columns []
+      end
+
+      after do
+        MyAmazingModel.allow_safe_columns [:title, :body]
+      end
+
       it "returns the underlying string" do
         model.title.class.must_equal String
         model.body.class.must_equal String
@@ -14,9 +22,6 @@ class SafeColumnSpec < Minitest::Spec
 
     describe "when safe columns are specified" do
       it "wraps it in an ActiveSupport::SafeBuffer" do
-        model.safe_columns = %i(title body)
-        model.reload
-
         model.title.class.must_equal ActiveSupport::SafeBuffer
         model.body.class.must_equal ActiveSupport::SafeBuffer
       end
