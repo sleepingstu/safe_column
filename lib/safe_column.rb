@@ -13,4 +13,9 @@ module SafeColumn
   def safe_columns
     @safe_columns || []
   end
+
+  protected
+  def is_safe_string_column?(v, attr_name)
+    v && v.is_a?(String) && self.safe_columns.include?(attr_name.to_sym)
+  end
 end
