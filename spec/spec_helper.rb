@@ -17,6 +17,7 @@ ActiveRecord::Schema.define do
   create_table :my_amazing_models do |table|
     table.column :title, :string
     table.column :body, :text
+    table.timestamps
   end
 
   create_table :normal_models do |table|

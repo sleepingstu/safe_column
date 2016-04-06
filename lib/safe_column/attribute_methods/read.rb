@@ -7,7 +7,12 @@ module AttributeMethods
 
       def internal_attribute_access_code(attr_name, cast_code)
         code = original_internal_attribute_access_code(attr_name, cast_code)
-        code += ";is_safe_string_column?(v, attr_name) ? ActiveSupport::SafeBuffer.new(v): v"
+
+        unless cache_attribute? attr_name
+          code += ";is_safe_string_column?(v, attr_name) ? ActiveSupport::SafeBuffer.new(v): v"
+        else
+          code
+        end
       end
     end
   end

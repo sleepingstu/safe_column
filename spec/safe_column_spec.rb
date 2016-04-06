@@ -17,6 +17,8 @@ class SafeColumnSpec < Minitest::Spec
       it "returns the underlying string" do
         model.title.class.must_equal String
         model.body.class.must_equal String
+        model.created_at.class.must_equal Time
+        model.updated_at.class.must_equal Time
       end
     end
 
@@ -24,6 +26,8 @@ class SafeColumnSpec < Minitest::Spec
       it "wraps it in an ActiveSupport::SafeBuffer" do
         model.title.class.must_equal ActiveSupport::SafeBuffer
         model.body.class.must_equal ActiveSupport::SafeBuffer
+        model.created_at.class.must_equal Time
+        model.updated_at.class.must_equal Time
       end
     end
   end
