@@ -19,6 +19,7 @@ class SafeColumnSpec < Minitest::Spec
         model.body.class.must_equal String
         model.created_at.class.must_equal Time
         model.updated_at.class.must_equal Time
+        model.published.must_equal false
       end
     end
 
@@ -28,6 +29,7 @@ class SafeColumnSpec < Minitest::Spec
         model.body.class.must_equal ActiveSupport::SafeBuffer
         model.created_at.class.must_equal Time
         model.updated_at.class.must_equal Time
+        model.published.must_equal false
       end
     end
   end
