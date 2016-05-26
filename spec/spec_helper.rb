@@ -15,6 +15,7 @@ ActiveRecord::Base.establish_connection(
 
 ActiveRecord::Schema.define do
   create_table :my_amazing_models do |table|
+    table.column :type, :string
     table.column :title, :string
     table.column :body, :text
     table.column :published, :boolean, :default => false

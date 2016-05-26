@@ -14,7 +14,13 @@ module SafeColumn
         end
 
         def safe_columns
-          @safe_columns || []
+          if @safe_columns
+            @safe_columns
+          elsif superclass.respond_to?(:safe_columns)
+            superclass.safe_columns
+          else
+            []
+          end
         end
       end
     end

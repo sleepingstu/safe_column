@@ -5,3 +5,9 @@ class MyAmazingModel < ActiveRecord::Base
   allow_safe_columns %i(title body)
 
 end
+
+class MyAmazingSubClassModel < MyAmazingModel
+end
+
+class ThirdLevelSubClass < MyAmazingSubClassModel
+end

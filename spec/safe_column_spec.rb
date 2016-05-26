@@ -34,6 +34,32 @@ class SafeColumnSpec < Minitest::Spec
     end
   end
 
+  describe "A subclass of a model using safe column" do
+    let (:model) { MyAmazingSubClassModel.create!(:title => "<h3>This is a title</h3>",
+        :body => "<p>This is a body</p>") }
+
+    it "inherits it's safe columns" do
+      model.title.class.must_equal ActiveSupport::SafeBuffer
+      model.body.class.must_equal ActiveSupport::SafeBuffer
+      model.created_at.class.must_equal Time
+      model.updated_at.class.must_equal Time
+      model.published.must_equal false
+    end
+  end
+
+  describe "A third-level subclass of a model using safe column" do
+    let (:model) { ThirdLevelSubClass.create!(:title => "<h3>This is a title</h3>",
+        :body => "<p>This is a body</p>") }
+
+    it "still inherits it's safe columns" do
+      model.title.class.must_equal ActiveSupport::SafeBuffer
+      model.body.class.must_equal ActiveSupport::SafeBuffer
+      model.created_at.class.must_equal Time
+      model.updated_at.class.must_equal Time
+      model.published.must_equal false
+    end
+  end
+
   describe "Any other model" do
     let(:model) { NormalModel.create!(:field => "Field") }
 
